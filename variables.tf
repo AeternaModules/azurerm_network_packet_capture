@@ -1,0 +1,45 @@
+variable "network_packet_captures" {
+  description = <<EOT
+Map of network_packet_captures, attributes below
+Required:
+    - name
+    - network_watcher_name
+    - resource_group_name
+    - target_resource_id
+    - storage_location (block):
+        - file_path (optional)
+        - storage_account_id (optional)
+Optional:
+    - maximum_bytes_per_packet
+    - maximum_bytes_per_session
+    - maximum_capture_duration
+    - filter (block):
+        - local_ip_address (optional)
+        - local_port (optional)
+        - protocol (required)
+        - remote_ip_address (optional)
+        - remote_port (optional)
+EOT
+
+  type = map(object({
+    name                      = string
+    network_watcher_name      = string
+    resource_group_name       = string
+    target_resource_id        = string
+    maximum_bytes_per_packet  = optional(number, 0)
+    maximum_bytes_per_session = optional(number, 1073741824)
+    maximum_capture_duration  = optional(number, 18000)
+    storage_location = object({
+      file_path          = optional(string)
+      storage_account_id = optional(string)
+    })
+    filter = optional(object({
+      local_ip_address  = optional(string)
+      local_port        = optional(string)
+      protocol          = string
+      remote_ip_address = optional(string)
+      remote_port       = optional(string)
+    }))
+  }))
+}
+
