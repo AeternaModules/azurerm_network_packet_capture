@@ -26,9 +26,9 @@ EOT
     network_watcher_name      = string
     resource_group_name       = string
     target_resource_id        = string
-    maximum_bytes_per_packet  = optional(number, 0)
-    maximum_bytes_per_session = optional(number, 1073741824)
-    maximum_capture_duration  = optional(number, 18000)
+    maximum_bytes_per_packet  = optional(number) # Default: 0
+    maximum_bytes_per_session = optional(number) # Default: 1073741824
+    maximum_capture_duration  = optional(number) # Default: 18000
     storage_location = object({
       file_path          = optional(string)
       storage_account_id = optional(string)
