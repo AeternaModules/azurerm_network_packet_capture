@@ -33,13 +33,13 @@ EOT
       file_path          = optional(string)
       storage_account_id = optional(string)
     })
-    filter = optional(object({
+    filter = optional(list(object({
       local_ip_address  = optional(string)
       local_port        = optional(string)
       protocol          = string
       remote_ip_address = optional(string)
       remote_port       = optional(string)
-    }))
+    })))
   }))
 }
 
