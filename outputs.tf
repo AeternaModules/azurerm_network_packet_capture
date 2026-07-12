@@ -1,3 +1,7 @@
+output "network_packet_captures_id" {
+  description = "Map of id values across all network_packet_captures, keyed the same as var.network_packet_captures"
+  value       = { for k, v in azurerm_network_packet_capture.network_packet_captures : k => v.id }
+}
 output "network_packet_captures_filter" {
   description = "Map of filter values across all network_packet_captures, keyed the same as var.network_packet_captures"
   value       = { for k, v in azurerm_network_packet_capture.network_packet_captures : k => v.filter }
